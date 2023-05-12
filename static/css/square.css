@@ -1,0 +1,12 @@
+@import url('../bootstrap-3.4.1-dist/css/bootstrap.min.css');
+body {
+  background: #e6e9ee;
+}
+.title h2 {
+  font-size: 42px;
+  margin-top: 20px;
+  margin-bottom: 30px;
+  text-align: center;
+  letter-spacing: 20px;
+  color: #824276;
+}

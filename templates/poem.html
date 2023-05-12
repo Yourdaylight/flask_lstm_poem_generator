@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>生成诗歌</title>
+    <link rel="stylesheet" href="/static/css/common.css">
+    <link rel="stylesheet" href="/static/css/poem.css">
+</head>
+<body>
+<!-- 导航栏 -->
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <!-- <a class="navbar-brand" href="#">Brand</a> -->
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <!-- <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li> -->
+                <li><a href="/">首页</a></li>
+                <li><a href="/square">广场</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                       aria-expanded="false">主题 <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">爱情</a></li>
+                        <li><a href="#">家国</a></li>
+                        <li><a href="#">田园</a></li>
+                    </ul>
+                </li>
+            </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                     <form class="navbar-form navbar-left" action="{{ url_for('to_square') }}" method="get">
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="query" placeholder="搜索">
+                        </div>
+                        <button type="submit" class="btn btn-default">
+                            <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                        </button>
+                    </form>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="title">
+    <h2>诗歌生成器</h2>
+</div>
+
+<div class="main-poem centre">
+    <div class="poem-word">
+        {% for i in rs %}
+        <p> {{i}}。</p><br>
+        {% endfor %}
+    </div>
+    <div class="poem-pic">
+        <img src="{{img_path}}" alt="." class="img-rounded">
+    </div>
+</div>
+<!--填写作者名称和诗歌名称，然后存入数据库-->
+<div class="submit-form centre">
+    <form action="/submit_poem" method="POST">
+        <div class="form-group">
+            <label for="author">作者：</label>
+            <input type="text" class="form-control" id="author" name="author" placeholder="请输入作者名称" required>
+        </div>
+        <div class="form-group">
+            <label for="title">诗歌名称：</label>
+            <input type="text" class="form-control" id="title" name="title" placeholder="请输入诗歌名称" required>
+        </div>
+        <div class="form-group">
+            <label for="theme">主题：</label>
+            <select class="form-control" id="theme" name="theme">
+                <option value="爱情" selected>爱情</option>
+                <option value="家国">家国</option>
+                <option value="田园">田园</option>
+                <option value="友情">友情</option>
+            </select>
+        </div>
+        <input type="hidden" id="poem" name="poem" value="{% for i in rs %}{{i}}{% endfor %}">
+        <input type="hidden" id="img_path" name="img_path" value="{{img_path}}">
+        <button type="submit" class="btn btn-primary">提交</button>
+    </form>
+</div>
+
+
+<script src="./js/jquery.js"></script>
+<script src="./bootstrap-3.4.1-dist/js/bootstrap.min.js"></script>
+<script>
+    $('.dropdown-toggle').dropdown()
+</script>
+</body>
+</html>

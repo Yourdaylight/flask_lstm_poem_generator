@@ -1,0 +1,54 @@
+@import url(../bootstrap-3.4.1-dist/css/bootstrap.min.css);
+body {
+  background: #e6e9ee;
+}
+.main {
+  margin: 120px auto;
+}
+.title {
+  padding-bottom: 20px;
+}
+.title h2 {
+  font-size: 42px;
+  margin-top: 50px;
+  margin-bottom: 30px;
+  text-align: center;
+  letter-spacing: 20px;
+  color: #824276;
+}
+.title p {
+  text-align: center;
+  color: #554258;
+  font-weight: 700;
+}
+.title h3 {
+  font-size: 27px;
+  text-align: center;
+  letter-spacing: 5px;
+}
+.put .pointout {
+  text-align: center;
+}
+.put .pointout span {
+  padding-right: 40px;
+}
+.put .pointout samp {
+  display: inline-block;
+  line-height: 34px;
+  text-align: left;
+  border-radius: 17px;
+  margin-right: 15px;
+  padding-left: 10px;
+  width: 180px;
+  background: #00605e;
+  color: #f7f3f3;
+}
+.put .pointout button {
+  border-radius: 17px;
+  background: #cdcdcd;
+  color: #fff;
+}
+.put .poem-input {
+  margin: 30px auto;
+  width: 1300px;
+}

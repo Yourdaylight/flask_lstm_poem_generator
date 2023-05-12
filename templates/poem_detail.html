@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ poem.title }}</title>
+    <link rel="stylesheet" href="/static/css/common.css">
+    <link rel="stylesheet" href="/static/css/poem_detail.css">
+    <style>
+        body {
+            font-family: 'Georgia', serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f5f5;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            background-color: #fff;
+            padding: 30px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+        }
+
+        h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+            text-align: center;
+            font-weight: normal;
+            color: #555;
+        }
+
+        p {
+            font-size: 18px;
+        }
+
+        strong {
+            font-weight: bold;
+        }
+
+        a {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #555;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 3px;
+            margin-top: 20px;
+            font-size: 16px;
+        }
+
+        a:hover {
+            background-color: #333;
+        }
+
+        .poem-wrapper {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .poem-content {
+            flex: 1;
+            margin-right: 20px;
+        }
+
+        .poem-pic {
+            width: 40%;
+        }
+
+        .poem-pic img {
+            width: 100%;
+            height: auto;
+        }
+
+        strong {
+            margin-left: 5%;
+        }
+
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2>{{ poem.title }}</h2>
+    <!--    p标签居中-->
+    <p style="text-align: center">
+        <strong>作者：</strong>{{ poem.author }}
+        <strong>主题：</strong>{{ poem.theme }}
+        <strong>日期：</strong>{{ poem.date }}
+    </p>
+    <!--    分割线-->
+    <hr>
+    <!--    两栏显示，左边诗歌，右边图片-->
+    <div class="poem-wrapper">
+        <div class="poem-content">
+            {% for line in poem.content.split('。') %}
+            {% if line %}
+            <p>{{ line }}。</p>
+            {% endif %}
+            {% endfor %}
+        </div>
+        <div class="poem-pic">
+            <img src="{{poem.img_path}}" alt="." class="img-rounded">
+        </div>
+    </div>
+    <a href="{{ url_for('to_square') }}">返回广场</a>
+</div>
+</body>
+</html>

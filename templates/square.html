@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>诗歌生成器-广场</title>
+    <link rel="stylesheet" href="/static/css/common.css">
+    <link rel="stylesheet" href="/static/css/square.css">
+    <style>
+        body {
+            background-color: #f5f5f5;
+        }
+
+        .thumbnail {
+            display: inline-block;
+            width: auto;
+            background-color: #ffffff;
+            border-radius: 5px;
+            padding: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .thumbnail img {
+            max-height: 150px;
+            width: 100%;
+            object-fit: contain;
+            border-radius: 5px;
+        }
+
+        .thumbnail p {
+            margin: 0;
+            padding: 5px;
+
+        }
+
+        .thumbnail:hover {
+            transform: scale(1.05);
+            transition: transform 0.3s;
+            cursor: pointer;
+        }
+
+    </style>
+
+</head>
+<body>
+<!-- 导航栏 -->
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li><a href="/">首页</a></li>
+                <li><a href="/square">广场</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                       aria-expanded="false">主题 <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">爱情</a></li>
+                        <li><a href="#">家国</a></li>
+                        <li><a href="#">田园</a></li>
+                    </ul>
+                </li>
+            </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <form class="navbar-form navbar-left" action="{{ url_for('to_square') }}" method="get">
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="query" placeholder="搜索">
+                        </div>
+                        <button type="submit" class="btn btn-default">
+                            <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                        </button>
+                    </form>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="title">
+    <h2>诗歌生成器-广场</h2>
+</div>
+
+<div class="main">
+    <div class="row" style="margin-left: 50px">
+        {% for poem in poems %}
+
+        <a href="{{ url_for('view_poem', poem_id=poem.id) }}">
+            <div class="col-sm-5 col-md-3">
+                <div class="thumbnail">
+                    <img src="{{poem.img_path}}" alt="...">
+                    <div class="caption" style="padding: 0">
+                        <p><strong>题目：</strong>{{ poem.title }} | <strong>主题：</strong>{{ poem.theme }}</p>
+                        <p><strong>作者：</strong>{{ poem.author }} <br> <strong>日期：</strong>{{ poem.date }}</p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </a>
+    </div>
+</div>
+
+<script src="/static/js/jquery.js"></script>
+<script src="/static/bootstrap-3.4.1-dist/js/bootstrap.min.js"></script>
+<script>
+    $('.dropdown-toggle').dropdown()
+</script>
+</body>
+</html>

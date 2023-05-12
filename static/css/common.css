@@ -1,0 +1,18 @@
+@import url('../bootstrap-3.4.1-dist/css/bootstrap.min.css');
+body {
+  background: #e6e9ee;
+}
+nav .container-fluid {
+  background: #544258;
+  color: #fff;
+  padding: 0 150px;
+}
+nav .navbar-collapse .navbar-nav li a {
+  color: #fff;
+}
+nav .navbar-collapse .navbar-nav li a:hover {
+  color: #ccc;
+}
+nav .navbar-collapse .dropdown-menu a {
+  color: #544258;
+}
